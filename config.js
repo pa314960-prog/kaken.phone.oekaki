@@ -16,12 +16,13 @@
 // ============================================================
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAdTIjxc4SlbS0jSpiwDtpLUVpIYbPmP4I",
+  authDomain: "kaken-phone-oekaki.firebaseapp.com",
+  projectId: "kaken-phone-oekaki",
+  storageBucket: "kaken-phone-oekaki.firebasestorage.app",
+  messagingSenderId: "102844988031",
+  appId: "1:102844988031:web:e32d00ef589dd600bd9d4a",
+  measurementId: "G-6Y6TSN6F32",
 };
 
 // 参加者用ページ(draw.html)のURL。

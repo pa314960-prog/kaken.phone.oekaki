@@ -66,15 +66,15 @@ kaken.phone.oekaki/
 - [x] Firestoreセキュリティルール案(`firestore.rules`)
 - [x] README.mdへのセットアップ手順(Windows初回セットアップ、別PCでの再開手順)まとめ
 - [x] GitHubリポジトリへのpush、GitHub Pagesの有効化(公開URL: `https://pa314960-prog.github.io/kaken.phone.oekaki/`。`config.js` の `DRAW_PAGE_URL` も更新済み)
-- [ ] **未実施: 実際のFirebaseプロジェクトの作成**(`config.js` の `firebaseConfig` は現状プレースホルダーの値が入っている。README.mdの「Firebaseプロジェクトの作成」の手順に従って、ブラウザでFirebaseコンソールを操作し、実際の値に置き換える必要がある)
+- [x] 実際のFirebaseプロジェクトの作成・`config.js` への実値反映(プロジェクトID: `kaken-phone-oekaki`)
+- [ ] **未実施: Firestoreセキュリティルールのデプロイ**(`firebase login` → `firebase init firestore` → `firebase deploy --only firestore:rules` が必要。Firestore Database自体の作成が済んでいない場合はFirebaseコンソールでの作成も先に必要)
 - [ ] **未実施: 実機(スマホ)での動作確認**
 
 ## 次にやること
 
-1. README.mdの「4. Firebaseプロジェクトの作成」の手順に従い、ブラウザでFirebaseプロジェクトを作成する
-2. 発行された `firebaseConfig` の値を `config.js` に貼り付ける
-3. `firebase init firestore` → `firebase deploy --only firestore:rules` でセキュリティルールを適用する
-4. スマホの実機で `gallery.html`(`https://pa314960-prog.github.io/kaken.phone.oekaki/gallery.html`)のQRコードを読み込み、`draw.html` から投稿 → `gallery.html` にリアルタイムで反映されることを確認する
+1. Firebaseコンソールで「Firestore Database」を作成する(まだの場合。ロケーションはasia-northeast1推奨)
+2. ローカル(自分のPC)で `firebase login` → `firebase init firestore` → `firebase deploy --only firestore:rules` を実行し、`firestore.rules` の内容を適用する
+3. スマホの実機で `gallery.html`(`https://pa314960-prog.github.io/kaken.phone.oekaki/gallery.html`)のQRコードを読み込み、`draw.html` から投稿 → `gallery.html` にリアルタイムで反映されることを確認する
 
 ## 設計上の注意点(変更時に踏まえること)
 
