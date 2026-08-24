@@ -1,0 +1,56 @@
+// ============================================================
+// firestore.rules
+// らくがきウォール用のFirestoreセキュリティルール例。
+//
+// 方針:
+// - 読み取り(read)は誰でも許可する(ギャラリーを不特定多数に見せるため)
+// - 書き込み(create)は形式・サイズを検証したうえで許可する
+//   - image は data:image/png または data:image/jpeg のbase64文字列であること
+//   - ドキュメント全体のサイズ上限を超えないよう image のサイズを制限する
+//   - createdAt はサーバー時刻(request.time)と一致すること(なりすまし・過去日時投稿の防止)
+//   - 更新・削除は一切禁止(投稿の改ざん防止)
+//
+// 補足(投稿頻度の制限について):
+// このアプリは匿名投稿(認証なし)のため、Firestoreルールだけでは
+// 「同一ユーザーが1分に1回まで」のような厳密なレート制限はできません。
+// クライアント側(submit.js)で10秒のクールダウンを設けていますが、
+// これはブラウザのlocalStorageに基づく簡易的な防止策であり、
+// 悪意のある利用者に対する完全な防止にはなりません。
+// より強固な制限が必要な場合は、Firebase App CheckやCloud Functions
+// (要Blazeプラン)の導入を検討してください。
+// ============================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /posts/{postId} {
+      // 誰でも閲覧可能
+      allow read: if true;
+
+      // 新規投稿のみ許可(更新・削除は禁止)
+      allow create: if
+        // 許可するフィールドのみ(余計なフィールドを混入させない)
+        request.resource.data.keys().hasOnly(['image', 'createdAt']) &&
+
+        // image は文字列かつ画像のdata URL形式であること
+        request.resource.data.image is string &&
+        request.resource.data.image.matches('^data:image/(png|jpeg);base64,.*') &&
+
+        // base64文字列のサイズを制限(Firestoreの1ドキュメント上限1MB対策)
+        // canvasは400x400pxに抑えているため、通常はこの範囲に収まる
+        request.resource.data.image.size() < 900000 &&
+
+        // createdAtはサーバー時刻と一致させる(クライアントによる偽装防止)
+        request.resource.data.createdAt == request.time;
+
+      allow update, delete: if false;
+    }
+
+    // 上記以外のコレクションへのアクセスは全て拒否
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

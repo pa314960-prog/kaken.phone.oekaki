@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+  draw.html
+  参加者用お絵かき画面。
+  スマホのブラウザでQRコード経由にアクセスし、指で絵を描いて送信する。
+  送信するとFirestoreの posts コレクションにbase64画像として保存される。
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>らくがきウォール</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/draw.css" />
+</head>
+<body>
+  <div class="draw-page">
+    <header class="draw-header">
+      <div class="switch-link-row">
+        <a class="pill-link switch-link" href="gallery.html">壁面表示に切替 →</a>
+      </div>
+      <h1 class="app-title">らくがき<span class="accent">ウォール</span></h1>
+      <p class="app-sub">指でかいて、送信すると壁に貼られます</p>
+      <p class="app-note">※初めて送信する時は確認画面が出るので「許可」をタップしてね</p>
+    </header>
+
+    <div id="errorBox" class="error-box"></div>
+
+    <div class="canvas-wrap">
+      <canvas id="drawCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <div class="color-row" id="colorRow">
+      <button class="color-btn selected" data-color="#ffffff" style="background:#ffffff"></button>
+      <button class="color-btn" data-color="#e74c3c" style="background:#e74c3c"></button>
+      <button class="color-btn" data-color="#f5a623" style="background:#f5a623"></button>
+      <button class="color-btn" data-color="#2ecc71" style="background:#2ecc71"></button>
+      <button class="color-btn" data-color="#3b82f6" style="background:#3b82f6"></button>
+      <button class="color-btn" data-color="#9b59b6" style="background:#9b59b6"></button>
+      <button class="eraser-btn" id="eraserBtn">消</button>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-outline" id="clearBtn">クリア</button>
+      <button class="btn btn-submit" id="submitBtn">送信する</button>
+    </div>
+  </div>
+
+  <!-- 送信完了画面 -->
+  <div class="done-overlay" id="doneOverlay">
+    <div class="done-title">送信しました！</div>
+    <p class="done-sub">壁面表示に反映されるまで少しお待ちください</p>
+    <button class="btn btn-outline" id="drawAgainBtn" disabled>もう一枚かく (<span id="cooldownSec">10</span>秒後)</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="config.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/canvas-draw.js"></script>
+  <script src="js/submit.js"></script>
+</body>
+</html>

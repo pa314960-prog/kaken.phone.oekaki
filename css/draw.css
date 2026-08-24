@@ -1,0 +1,195 @@
+/* ============================================================
+   draw.css
+   draw.html(参加者用お絵かき画面)専用スタイル。
+   ============================================================ */
+
+.draw-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 32px;
+}
+
+.draw-header {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.switch-link-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.switch-link {
+  font-size: 0.8rem;
+  padding: 8px 14px;
+}
+
+.draw-header .app-sub {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.draw-header .app-note {
+  color: var(--text-sub);
+  font-size: 0.78rem;
+  margin: 4px 0 0;
+}
+
+/* ---------- canvas ---------- */
+.canvas-wrap {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  margin: 12px 0 20px;
+}
+
+#drawCanvas {
+  width: 100%;
+  height: 100%;
+  background: var(--canvas-bg);
+  border-radius: 18px;
+  border: 1px solid var(--border-light);
+  display: block;
+  touch-action: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- 色選択 ---------- */
+.color-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.color-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: #fff;
+  padding: 0;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.color-btn.selected {
+  border-color: var(--text-main);
+  transform: scale(1.1);
+}
+
+.color-btn[data-color="#ffffff"] {
+  border: 1px solid var(--border-light);
+}
+.color-btn[data-color="#ffffff"].selected {
+  border: 3px solid var(--text-main);
+}
+
+.eraser-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: #ffffff;
+  color: #1a1a1f;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.eraser-btn.selected {
+  border-color: var(--text-main);
+  transform: scale(1.1);
+}
+
+/* ---------- 下部ボタン ---------- */
+.action-row {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  flex: 1;
+  padding: 16px 0;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  flex: 1;
+}
+
+.btn-submit {
+  background: var(--accent-green);
+  color: #073024;
+  flex: 2;
+  font-size: 1.05rem;
+}
+
+.btn-submit:disabled {
+  background: #2f6b58;
+  color: #7fa79a;
+  cursor: not-allowed;
+}
+
+/* ---------- エラーメッセージ ---------- */
+.error-box {
+  width: 100%;
+  max-width: 480px;
+  background: #3a1c1c;
+  border: 1px solid #6b2c2c;
+  color: #ffb3b3;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.error-box.show {
+  display: block;
+}
+
+/* ---------- 送信完了オーバーレイ ---------- */
+.done-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 31, 0.97);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 24px;
+  z-index: 20;
+}
+
+.done-overlay.show {
+  display: flex;
+}
+
+.done-overlay .done-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.done-overlay .done-sub {
+  color: var(--text-sub);
+  margin-bottom: 28px;
+}
+
+.done-overlay .btn-outline {
+  max-width: 260px;
+}
