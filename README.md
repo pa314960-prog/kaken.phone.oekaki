@@ -24,7 +24,7 @@ kaken.phone.oekaki/
 ├── js/
 │   ├── firebase-init.js  Firebase App / Firestoreの初期化
 │   ├── canvas-draw.js    canvas描画処理(ペン・消しゴム・色選択)
-│   ├── submit.js         Firestoreへの送信・クールダウン処理
+│   ├── submit.js         Firestoreへの送信・完了/エラー画面切り替え
 │   ├── gallery.js         ギャラリーのリアルタイム表示処理
 │   └── qr-display.js      QRコード描画処理
 ├── CLAUDE.md              プロジェクトの文脈まとめ(別PCで開いたとき用)
@@ -194,4 +194,4 @@ npx serve .
   - `createdAt` はサーバー時刻(`request.time`)と一致すること
   - 更新・削除は禁止
 
-投稿頻度の制限については、認証なしの匿名投稿という構成上、Firestoreルールだけでは厳密なレート制限はできません。`js/submit.js` でブラウザのlocalStorageを使った10秒間のクールダウンを実装していますが、これはあくまで善意のユーザー向けの連投防止であり、悪意のある利用者への完全な対策ではない点にご注意ください。より強固な対策が必要な場合は、Firebase App CheckやCloud Functions(要Blazeプラン)の導入を検討してください。
+投稿頻度の制限については、認証なしの匿名投稿という構成上、Firestoreルールだけでは厳密なレート制限はできません。`js/submit.js` では送信中のみ送信ボタンを無効化する程度の連投防止に留めており、悪意のある利用者への完全な対策ではない点にご注意ください。より強固な対策が必要な場合は、Firebase App CheckやCloud Functions(要Blazeプラン)の導入を検討してください。
