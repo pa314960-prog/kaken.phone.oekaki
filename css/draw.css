@@ -83,13 +83,6 @@
   transform: scale(1.1);
 }
 
-.color-btn[data-color="#ffffff"] {
-  border: 1px solid var(--border-light);
-}
-.color-btn[data-color="#ffffff"].selected {
-  border: 3px solid var(--text-main);
-}
-
 .eraser-btn {
   width: 42px;
   height: 42px;

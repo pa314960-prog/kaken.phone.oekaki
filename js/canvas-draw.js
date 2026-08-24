@@ -10,7 +10,7 @@ const ctx = canvas.getContext("2d");
 const PEN_SIZE = 6;
 const ERASER_SIZE = 24;
 
-let currentColor = "#ffffff";
+let currentColor = "#000000";
 let isErasing = false;
 let isDrawing = false;
 let lastX = 0;
