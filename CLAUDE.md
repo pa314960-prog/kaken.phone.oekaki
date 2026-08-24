@@ -65,8 +65,8 @@ kaken.phone.oekaki/
 - [x] QRコード表示(qrcodejs、CDN経由、npm不要)
 - [x] Firestoreセキュリティルール案(`firestore.rules`)
 - [x] README.mdへのセットアップ手順(Windows初回セットアップ、別PCでの再開手順)まとめ
-- [ ] **未実施: 実際のFirebaseプロジェクトの作成**(`config.js` は現状プレースホルダーの値が入っている。README.mdの「Firebaseプロジェクトの作成」の手順に従って、ブラウザでFirebaseコンソールを操作し、実際の値に置き換える必要がある)
-- [ ] **未実施: GitHubリポジトリへのpush、GitHub Pagesの有効化**
+- [x] GitHubリポジトリへのpush、GitHub Pagesの有効化(公開URL: `https://pa314960-prog.github.io/kaken.phone.oekaki/`。`config.js` の `DRAW_PAGE_URL` も更新済み)
+- [ ] **未実施: 実際のFirebaseプロジェクトの作成**(`config.js` の `firebaseConfig` は現状プレースホルダーの値が入っている。README.mdの「Firebaseプロジェクトの作成」の手順に従って、ブラウザでFirebaseコンソールを操作し、実際の値に置き換える必要がある)
 - [ ] **未実施: 実機(スマホ)での動作確認**
 
 ## 次にやること
@@ -74,10 +74,7 @@ kaken.phone.oekaki/
 1. README.mdの「4. Firebaseプロジェクトの作成」の手順に従い、ブラウザでFirebaseプロジェクトを作成する
 2. 発行された `firebaseConfig` の値を `config.js` に貼り付ける
 3. `firebase init firestore` → `firebase deploy --only firestore:rules` でセキュリティルールを適用する
-4. GitHubリポジトリを作成し、このプロジェクトをpushする
-5. GitHub PagesでHostingを有効化し、公開URLを確認する
-6. `config.js` の `DRAW_PAGE_URL` を実際の公開URL(`.../draw.html`)に書き換えて再度push
-7. スマホの実機で `gallery.html` のQRコードを読み込み、`draw.html` から投稿 → `gallery.html` にリアルタイムで反映されることを確認する
+4. スマホの実機で `gallery.html`(`https://pa314960-prog.github.io/kaken.phone.oekaki/gallery.html`)のQRコードを読み込み、`draw.html` から投稿 → `gallery.html` にリアルタイムで反映されることを確認する
 
 ## 設計上の注意点(変更時に踏まえること)
 

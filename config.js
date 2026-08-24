@@ -28,4 +28,4 @@ const firebaseConfig = {
 // gallery.html がQRコードを描画する際にこの値を使う。
 // GitHub Pagesで公開したあとの実際のURLに書き換えること。
 // 例: "https://your-account.github.io/kaken.phone.oekaki/draw.html"
-const DRAW_PAGE_URL = "https://your-account.github.io/kaken.phone.oekaki/draw.html";
+const DRAW_PAGE_URL = "https://pa314960-prog.github.io/kaken.phone.oekaki/draw.html";
