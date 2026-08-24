@@ -67,14 +67,12 @@ kaken.phone.oekaki/
 - [x] README.mdへのセットアップ手順(Windows初回セットアップ、別PCでの再開手順)まとめ
 - [x] GitHubリポジトリへのpush、GitHub Pagesの有効化(公開URL: `https://pa314960-prog.github.io/kaken.phone.oekaki/`。`config.js` の `DRAW_PAGE_URL` も更新済み)
 - [x] 実際のFirebaseプロジェクトの作成・`config.js` への実値反映(プロジェクトID: `kaken-phone-oekaki`)
-- [ ] **未実施: Firestoreセキュリティルールのデプロイ**(`firebase login` → `firebase init firestore` → `firebase deploy --only firestore:rules` が必要。Firestore Database自体の作成が済んでいない場合はFirebaseコンソールでの作成も先に必要)
+- [x] Firestoreセキュリティルールのデプロイ(`firebase init firestore` → `firebase deploy --only firestore:rules` 実施済み)
 - [ ] **未実施: 実機(スマホ)での動作確認**
 
 ## 次にやること
 
-1. Firebaseコンソールで「Firestore Database」を作成する(まだの場合。ロケーションはasia-northeast1推奨)
-2. ローカル(自分のPC)で `firebase login` → `firebase init firestore` → `firebase deploy --only firestore:rules` を実行し、`firestore.rules` の内容を適用する
-3. スマホの実機で `gallery.html`(`https://pa314960-prog.github.io/kaken.phone.oekaki/gallery.html`)のQRコードを読み込み、`draw.html` から投稿 → `gallery.html` にリアルタイムで反映されることを確認する
+1. スマホの実機で `gallery.html`(`https://pa314960-prog.github.io/kaken.phone.oekaki/gallery.html`)のQRコードを読み込み、`draw.html` から投稿 → `gallery.html` にリアルタイムで反映されることを確認する
 
 ## 設計上の注意点(変更時に踏まえること)
 
