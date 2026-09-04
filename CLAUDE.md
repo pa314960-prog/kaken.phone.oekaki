@@ -39,7 +39,7 @@ kaken.phone.oekaki/
 │   ├── firebase-init.js    Firebase App / Firestoreの初期化のみ
 │   ├── canvas-draw.js      canvas描画処理(ペン・消しゴム・色選択・クリア)
 │   ├── submit.js           Firestoreへの送信・完了/エラー画面切り替え
-│   ├── gallery.js          ギャラリーのonSnapshotリアルタイム表示・件数カウント・新着ハイライト
+│   ├── gallery.js          ギャラリーのonSnapshotリアルタイム表示・件数カウント・新着ハイライト・投稿削除
 │   └── qr-display.js       QRコード描画(qrcodejsを使ってdraw.htmlのURLを描画)
 ├── README.md                セットアップ手順・動作確認方法など
 └── CLAUDE.md                 このファイル
@@ -62,6 +62,7 @@ kaken.phone.oekaki/
 - [x] canvas描画処理(タッチ・マウス両対応、ペン6色+消しゴム)
 - [x] Firestoreへの送信処理(送信中のボタン無効化、エラー時の再送信対応)
 - [x] ギャラリーのリアルタイム表示(onSnapshot、新着ハイライトアニメーション、件数カウント)
+- [x] ギャラリーからの投稿削除機能(各投稿にホバー表示される×ボタン→確認ダイアログ→Firestoreから削除)
 - [x] QRコード表示(qrcodejs、CDN経由、npm不要)
 - [x] Firestoreセキュリティルール案(`firestore.rules`)
 - [x] README.mdへのセットアップ手順(Windows初回セットアップ、別PCでの再開手順)まとめ
@@ -79,4 +80,5 @@ kaken.phone.oekaki/
 - `config.js` の値(apiKeyなど)は公開前提のクライアント設定であり、秘匿する必要はない。アクセス制御は `firestore.rules` で行っている
 - canvasの解像度は400×400pxに固定(通信量とFirestoreの1ドキュメント1MB制限を考慮)。解像度を上げる場合はドキュメントサイズが1MBを超えないか要確認(`firestore.rules` 内の900KB制限も合わせて見直すこと)
 - 投稿の連投防止は送信中のボタン無効化のみ(クールダウンは廃止済み)。悪意のあるユーザーへの完全な対策ではない(詳細はREADME.md・firestore.rules内コメント参照)
+- ギャラリーの削除機能は認証なしで誰でも呼び出せる(`firestore.rules` で `allow delete: if true`)。誤操作防止の確認ダイアログはあるが、悪意のある第三者によるAPI直接呼び出しは防げない(詳細はREADME.md参照)
 - Cloud Storage / Firebase Hosting / Cloud Functionsは意図的に使用していない(Blazeプラン=クレジットカード登録が不要な構成にするため)

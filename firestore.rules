@@ -8,7 +8,10 @@
 //   - image は data:image/png または data:image/jpeg のbase64文字列であること
 //   - ドキュメント全体のサイズ上限を超えないよう image のサイズを制限する
 //   - createdAt はサーバー時刻(request.time)と一致すること(なりすまし・過去日時投稿の防止)
-//   - 更新・削除は一切禁止(投稿の改ざん防止)
+//   - 内容の更新(update)は禁止(投稿の改ざん防止)
+//   - 削除(delete)は許可する(gallery.html の削除ボタンから不適切な投稿を
+//     取り除けるようにするため)。認証の仕組みがないため、この値を知っていれば
+//     誰でもAPI経由で削除できてしまう点に注意(詳細はREADME.md参照)
 //
 // 補足(投稿頻度の制限について):
 // このアプリは匿名投稿(認証なし)のため、Firestoreルールだけでは
@@ -44,7 +47,8 @@ service cloud.firestore {
         // createdAtはサーバー時刻と一致させる(クライアントによる偽装防止)
         request.resource.data.createdAt == request.time;
 
-      allow update, delete: if false;
+      allow update: if false;
+      allow delete: if true;
     }
 
     // 上記以外のコレクションへのアクセスは全て拒否

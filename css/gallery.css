@@ -68,6 +68,7 @@
 }
 
 .gallery-item {
+  position: relative;
   background: var(--bg-panel);
   border: 1px solid var(--border-light);
   border-radius: 14px;
@@ -80,6 +81,33 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.gallery-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background: #e74c3c;
 }
 
 @keyframes pop-in {

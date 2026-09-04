@@ -30,6 +30,23 @@ function createPostElement(doc) {
   img.alt = "投稿されたらくがき";
   item.appendChild(img);
 
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.type = "button";
+  deleteBtn.setAttribute("aria-label", "この投稿を削除");
+  deleteBtn.textContent = "×";
+  deleteBtn.addEventListener("click", () => {
+    if (!confirm("この投稿を削除しますか?この操作は取り消せません。")) return;
+    db.collection(POSTS_COLLECTION)
+      .doc(doc.id)
+      .delete()
+      .catch((error) => {
+        console.error("削除に失敗しました:", error);
+        alert("削除に失敗しました。通信状態を確認してもう一度お試しください。");
+      });
+  });
+  item.appendChild(deleteBtn);
+
   return item;
 }
 
